@@ -5,4 +5,4 @@ ARG version
 # Install the specific version of MLFlow, or the latest one
 RUN pip install mlflow==$version || pip install mlflow
 
-ENTRYPOINT ["mlflow"]
+ENTRYPOINT ["mlflow", "server"]
