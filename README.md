@@ -8,6 +8,11 @@ This repository builds a production-ready Docker image to put an [MLFlow](https:
 Check [Docker Hub](https://hub.docker.com/r/larribas/mlflow) to find and download different versions of this image.
 
 
+## GitHub Packages
+
+The images are pushed to [GitHub Packages](https://github.com/larribas/docker-production-mlflow/packages) as well.
+
+
 ## Kubernetes & Helm
 
 You can use this [helm chart repository](https://github.com/larribas/helm-charts) to deploy an MLFlow cluster with Kubernetes.
