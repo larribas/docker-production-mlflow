@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish
 
 on:
   push:
@@ -15,29 +15,16 @@ env:
   IMAGE_NAME: mlflow
 
 jobs:
-  push:
+  push-to-github:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
     steps:
       - uses: actions/checkout@v2
 
-      - name: Log into registry
-        run: echo "${{ github.token }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          repository: ${{ github.repository }}
+          tag_with_ref: true
+          add_git_labels: true
 
-      - name: Build and push image
-        run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          docker build --tag $IMAGE_ID:$VERSION --file $VERSION/Dockerfile .
-          docker push $IMAGE_ID:$VERSION
-
-      - name: Echo variables from a previous step
-        run: |
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
