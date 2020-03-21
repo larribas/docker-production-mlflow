@@ -36,3 +36,8 @@ jobs:
           echo VERSION=$VERSION
           docker build --tag $IMAGE_ID:$VERSION --file $VERSION/Dockerfile .
           docker push $IMAGE_ID:$VERSION
+
+      - name: Echo variables from a previous step
+        run: |
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
