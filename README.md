@@ -2,15 +2,14 @@
 
 This repository builds a production-ready Docker image to put an [MLFlow](https://mlflow.org/) cluster into production.
 
+The MLFlow server supports the following backend stores:
+- MySQL
+- PostgreSQL
+
 
 ## Docker Hub
 
 Check [Docker Hub](https://hub.docker.com/r/larribas/mlflow) to find and download different versions of this image.
-
-
-## GitHub Packages
-
-The images are pushed to [GitHub Packages](https://github.com/larribas/docker-production-mlflow/packages) as well.
 
 
 ## Kubernetes & Helm
